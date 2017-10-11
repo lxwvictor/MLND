@@ -18724,7 +18724,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[211]:</div>
+<div class="prompt input_prompt">In&nbsp;[234]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># For each feature find the data points with extreme high or low values</span>
@@ -18765,6 +18765,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 <span class="k">print</span><span class="p">(</span><span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_dup</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; duplicates.&quot;</span><span class="p">)</span>
 
 <span class="n">outliers</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;There are &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">outliers</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; outliers.&quot;</span><span class="p">)</span>
 
 <span class="c1"># Remove the outliers, if any were specified</span>
 <span class="n">good_data</span> <span class="o">=</span> <span class="n">log_data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">log_data</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">outliers</span><span class="p">])</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
@@ -19529,6 +19530,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 5 duplicates.
+There are 42 outliers.
 </pre>
 </div>
 </div>
@@ -19555,7 +19557,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> Yes, because there are duplicated indices. These data points should be removed as they will create skewed datasets in more than one dimension.</p>
+<p><strong>Answer:</strong> Yes, there are 5 outliers exist in multiple features. In total, 42 outliers.</p>
+<p>Yes, they should be removed from the dataset. In this case, the outliers may be due to wrong inputs, but also could be due to the customers are really big and important customers. When we make business decisions, VIPs may need to be treated seperately. Moreover, they will make the dataset skewed and impact the accuracy of the model for a general case.</p>
 
 </div>
 </div>
@@ -19585,7 +19588,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[212]:</div>
+<div class="prompt input_prompt">In&nbsp;[235]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply PCA by fitting the good data with the same number of dimensions as features</span>
@@ -19598,7 +19601,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <span class="c1"># Generate PCA results plot</span>
 <span class="n">pca_results</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">pca_results</span><span class="p">(</span><span class="n">good_data</span><span class="p">,</span> <span class="n">pca</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -19615,7 +19618,7 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[ 0.49930484  0.22594807  0.10488309  0.09781761  0.04879109  0.0232553 ]
+<pre>[ 0.49930484  0.7252529   0.83013599  0.92795361  0.9767447   1.        ]
 </pre>
 </div>
 </div>
@@ -19959,8 +19962,9 @@ MucZ7RipCwAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong> 73% of variance in the data is explained the first two principal components. 93% of variance explained by the first four principal components.</p>
 <p>In the first principal component, 'Milk', 'Grocery' and 'Detergents_Paper' contributed the most positive weights. The rest 3 products accounted smaller weights, 'Fresh' and 'Frozen' have negative weights in this scenario. This indicates that customers with large positive value of PC1 tends to buy more 'Milk', 'Grocery' and 'Detergents_Paper', they also tend to buy less 'Fresh' and 'Frozen', but the magnitude of 'less' is smaller. Because the 2 groups of products are inversely correlated. In another way to say, customers with large negative value of P1 tend to buy more 'Fresh' and 'Frozen', less the other productes. Almost half of the variance can be represented by the first pricipal component.</p>
-<p>In the second principal component, only 'Detergents_Paper' is anti-correlated to the reset of products, but the manitude is very small. Customers with large negative value of PC2 buy slightly more 'Detergents_Paper', but much less the other products and vice versa.</p>
-<p>The third and fourth principal components both have few features are anti-correlated. When customers buy more products with large positive feature weight, they will buy less products with large negative feature weight, and vice versa.</p>
+<p>In the second principal component, only 'Detergents_Paper' is anti-correlated to the reset of products, but the manitude is very small. 'Fresh', 'Frozen' and 'Delicatessen' are high correlated, meaning if a customer buys more 'Fresh', he/she tends to buy more 'Frozen' and 'Delicatessen'. It's also true that he/she buys more 'Milk' and 'Grocery', but the spending increment may not be as much as 'Frozen' and 'Delicatessen'. Since 'Detergents_Paper' is anti-correlated to the rest of products, so this specific customer tends to buy slightly less 'Detergetns_Paper'.</p>
+<p>The third principal component has 'Fresh' and 'Detergents_Paper' are highly correlated. 'Milk', 'Frozen' and 'Delicatessen' are highly correlated between each other, but anti-correlated from the earlier group of 'Fresh' and 'Detergents_Paper'. The magnitude of 'Grocery' is so small, I tend to ignore it in the analysis. So when a customer spends more in one product, he/she tends to spend more in the product from the same group which has high correlation between each other. But he/she spends less in the products from the group that anti-correlate to it.</p>
+<p>The same analysis hold true for the fourth pricipal component. When a customer buys more 'Frozen', he/she tends to buy more 'Detergents_Paper', in the meantime, much less 'Delicatessen', a little less 'Fresh', 'Milk' and 'Grocery'.</p>
 
 </div>
 </div>
