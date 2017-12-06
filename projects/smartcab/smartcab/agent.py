@@ -6,7 +6,7 @@ from simulator import Simulator
 
 class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
-        This is the object you will be modifying. """ 
+        This is the object you will be modifying. """
 
     def __init__(self, env, learning=False, epsilon=1.0, alpha=0.5):
         super(LearningAgent, self).__init__(env)     # Set the agent in the evironment 
@@ -56,7 +56,7 @@ class LearningAgent(Agent):
         ## TO DO ##
         ###########
         
-        # NOTE : you are not allowed to engineer eatures outside of the inputs available.
+        # NOTE : you are not allowed to engineer features outside of the inputs available.
         # Because the aim of this project is to teach Reinforcement Learning, we have placed 
         # constraints in order for you to learn how to adjust epsilon and alpha, and thus learn about the balance between exploration and exploitation.
         # With the hand-engineered features, this learning process gets entirely negated.
@@ -101,15 +101,21 @@ class LearningAgent(Agent):
         # Set the agent state and default action
         self.state = state
         self.next_waypoint = self.planner.next_waypoint()
-        action = None
+        #action = None
 
         ########### 
         ## TO DO ##
-        ###########
+        ###########len(self.random_actions)
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         # Otherwise, choose an action with the highest Q-value for the current state
         # Be sure that when choosing an action with highest Q-value that you randomly select between actions that "tie".
+
+        # Vic - Choose a random action
+        if self.learning ==  False:
+            len_actions  = len(self.valid_actions)
+            action_idx = random.randint(0, len_actions - 1)
+            action = self.valid_actions[action_idx]
         return action
 
 
@@ -165,7 +171,10 @@ def run():
     # Follow the driving agent
     # Flags:
     #   enforce_deadline - set to True to enforce a deadline metric
-    env.set_primary_agent(agent)
+
+    # Vic - Set the enforce_deadline to True
+    enforce_deadline = True
+    env.set_primary_agent(agent, enforce_deadline)
 
     ##############
     # Create the simulation
@@ -174,13 +183,22 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env)
+
+    # Vic - Set the update_delay to 0.01, log_metrics to True, display to False
+    update_delay = 0.01
+    display = False
+    log_metrics = True
+
+    sim = Simulator(env,None, update_delay, display, log_metrics)
     
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
+
+    # Vic - set n_test to 10
+    n_test = 10
     sim.run()
 
 
