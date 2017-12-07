@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52819a9c-f09e-458e-b3ae-07d7794ca40b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logs/sim_improved-learning.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/logs/sim_improved-learning.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/sim_default-learning.csv" afterPath="$PROJECT_DIR$/logs/sim_default-learning.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/sim_default-learning.txt" afterPath="$PROJECT_DIR$/logs/sim_default-learning.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/sim_improved-learning.csv" afterPath="$PROJECT_DIR$/logs/sim_improved-learning.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logs/sim_improved-learning.txt" afterPath="$PROJECT_DIR$/logs/sim_improved-learning.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartcab.ipynb" afterPath="$PROJECT_DIR$/smartcab.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smartcab/agent.py" afterPath="$PROJECT_DIR$/smartcab/agent.py" />
     </list>
@@ -29,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="agent.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/smartcab/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
+            <state relative-caret-position="726">
+              <caret line="256" column="2" lean-forward="true" selection-start-line="256" selection-start-column="2" selection-end-line="256" selection-end-column="2" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -41,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="environment.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="environment.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/smartcab/environment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-630">
-              <caret line="285" column="17" lean-forward="false" selection-start-line="285" selection-start-column="8" selection-end-line="285" selection-end-column="17" />
+            <state relative-caret-position="144">
+              <caret line="319" column="0" lean-forward="true" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -112,11 +110,11 @@
       <find>alpha=</find>
       <find>alpha</find>
       <find>self.epsilon</find>
-      <find>sim_improved-learning</find>
       <find>self.table_file</find>
       <find>reward</find>
       <find>rewards =</find>
       <find>reward =</find>
+      <find>sim_improved-learning</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -466,22 +464,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smartcab/environment.py">
+    <entry file="file://$PROJECT_DIR$/smartcab/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-630">
-          <caret line="285" column="17" lean-forward="false" selection-start-line="285" selection-start-column="8" selection-end-line="285" selection-end-column="17" />
+        <state relative-caret-position="726">
+          <caret line="256" column="2" lean-forward="true" selection-start-line="256" selection-start-column="2" selection-end-line="256" selection-end-column="2" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/smartcab/agent.py">
+    <entry file="file://$PROJECT_DIR$/smartcab/environment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
+        <state relative-caret-position="144">
+          <caret line="319" column="0" lean-forward="true" selection-start-line="319" selection-start-column="0" selection-end-line="319" selection-end-column="0" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>
