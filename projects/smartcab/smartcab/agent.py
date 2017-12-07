@@ -41,7 +41,8 @@ class LearningAgent(Agent):
         # If 'testing' is True, set epsilon and alpha to 0
 
         # Vic
-        self.epsilon -= 0.05
+        # self.epsilon -= 0.05
+        self.epsilon -= 0.005
         if testing == True:
             self.epsilon = 0
             self.alpha = 0
@@ -121,14 +122,14 @@ class LearningAgent(Agent):
 
         ########### 
         ## TO DO ##
-        ###########len(self.random_actions)
+        ###########
         # When not learning, choose a random action
         # When learning, choose a random action with 'epsilon' probability
         # Otherwise, choose an action with the highest Q-value for the current state
         # Be sure that when choosing an action with highest Q-value that you randomly select between actions that "tie".
 
         # Vic - Choose a random action when not learning
-        if self.learning ==  False:
+        if self.learning == False:
             action = random.choice(self.valid_actions)
         else:
             if random.random() < self.epsilon:
@@ -137,11 +138,9 @@ class LearningAgent(Agent):
                 # If the current state is in the Q dictionary
                 if state in self.Q:
                     maxQ = self.get_maxQ(state)
-                    print('maxQ', self.Q)
-                    print(state)
                     action_list = []
                     for k,v in self.Q[state].items():
-                        print('k, v', k,v)
+                        #print('k, v', k,v)
                         if v == maxQ:
                             action_list.append(k)
                     action = random.choice(action_list)
@@ -163,7 +162,7 @@ class LearningAgent(Agent):
 
         # Vic
         #print state, action, reward
-        self.Q[state][action] = self.alpha * reward
+        self.Q[state][action] += self.alpha * reward
         return
 
 
@@ -202,7 +201,7 @@ def run():
     #agent = env.create_agent(LearningAgent)
 
     # Vic - set the learning to True
-    agent = env.create_agent(LearningAgent, learning=True)
+    agent = env.create_agent(LearningAgent, learning=True, alpha=0.2)
     
     ##############
     # Follow the driving agent
@@ -222,7 +221,7 @@ def run():
     #   optimized    - set to True to change the default log file name
 
     # Vic - Set the update_delay to 0.01, log_metrics to True, display to False
-    # For 'sim_no-learning.csv
+    # For 'sim_no-learning.csv'
     # update_delay = 0.01
     # display = False
     # log_metrics = True
@@ -230,11 +229,19 @@ def run():
     # sim = Simulator(env, update_delay=update_delay, display=display, log_metrics=log_metrics)
 
     # Vic - Set the update_delay to 0.01, log_metrics to True, learning to True
-    # For 'sim_no-learning.csv
+    # # For 'sim_no-learning.csv
+    # update_delay = 0.01
+    # # display = False
+    # log_metrics = True
+    # sim = Simulator(env, update_delay=update_delay, log_metrics=log_metrics)
+
+    # Vic - Set the update_delay to 0.01, log_metrics to True, learning to True, optimized to True
+    # For 'a.csv'
     update_delay = 0.01
-    # display = False
+    display = False
     log_metrics = True
-    sim = Simulator(env, update_delay=update_delay, log_metrics=log_metrics)
+    optimized = True
+    sim = Simulator(env, update_delay=update_delay, display=display, log_metrics=log_metrics, optimized=optimized)
     
     ##############
     # Run the simulator
@@ -243,8 +250,8 @@ def run():
     #   n_test     - discrete number of testing trials to perform, default is 0
 
     # Vic - set n_test to 10
-    n_test = 10
-    sim.run(n_test=n_test)
+    n_test = 20
+    sim.run(n_test=n_test, tolerance=0.01)
 
 
 if __name__ == '__main__':
