@@ -41,7 +41,7 @@ class LearningAgent(Agent):
         # If 'testing' is True, set epsilon and alpha to 0
 
         # Vic
-        # self.epsilon -= 0.05
+        #self.epsilon -= 0.05
         self.epsilon -= 0.0005
         if testing == True:
             self.epsilon = 0
@@ -162,7 +162,8 @@ class LearningAgent(Agent):
 
         # Vic
         #print state, action, reward
-        self.Q[state][action] += self.alpha * reward
+        if self.learning:
+            self.Q[state][action] = (1-self.alpha) * (self.Q[state][action]) + self.alpha * reward
         return
 
 
@@ -201,8 +202,9 @@ def run():
     #agent = env.create_agent(LearningAgent)
 
     # Vic - set the learning to True
-    agent = env.create_agent(LearningAgent, learning=True, alpha=0.2)
-    
+    agent = env.create_agent(LearningAgent, learning=True, alpha=0.5)
+    # agent = env.create_agent(LearningAgent, learning=False, alpha=0.2)
+
     ##############
     # Follow the driving agent
     # Flags:
@@ -225,11 +227,10 @@ def run():
     # update_delay = 0.01
     # display = False
     # log_metrics = True
-    # n_test = 10
     # sim = Simulator(env, update_delay=update_delay, display=display, log_metrics=log_metrics)
 
     # Vic - Set the update_delay to 0.01, log_metrics to True, learning to True
-    # # For 'sim_no-learning.csv
+    # For 'sim_no-learning.csv
     # update_delay = 0.01
     # # display = False
     # log_metrics = True
@@ -237,12 +238,12 @@ def run():
 
     # Vic - Set the update_delay to 0.01, log_metrics to True, learning to True, optimized to True
     # For 'a.csv'
-    update_delay = 0.001
+    update_delay = 0.01
     display = False
     log_metrics = True
     optimized = True
     sim = Simulator(env, update_delay=update_delay, display=display, log_metrics=log_metrics, optimized=optimized)
-    
+
     ##############
     # Run the simulator
     # Flags:
@@ -251,7 +252,7 @@ def run():
 
     # Vic - set n_test to 10
     n_test = 20
-    sim.run(n_test=n_test, tolerance=0.01)
+    sim.run(n_test=n_test)
 
 
 if __name__ == '__main__':
