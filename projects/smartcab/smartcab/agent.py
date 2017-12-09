@@ -138,11 +138,14 @@ class LearningAgent(Agent):
                 # If the current state is in the Q dictionary
                 if state in self.Q:
                     maxQ = self.get_maxQ(state)
-                    action_list = []
-                    for k,v in self.Q[state].items():
-                        #print('k, v', k,v)
-                        if v == maxQ:
-                            action_list.append(k)
+                    # action_list = []
+                    # for k,v in self.Q[state].items():
+                    #     #print('k, v', k,v)
+                    #     if v == maxQ:
+                    #         action_list.append(k)
+                    #
+                    # Below is a more pythonic way.
+                    action_list = [act for act, val in self.Q[state].items() if val == maxQ]
                     action = random.choice(action_list)
                 else:
                     action = random.choice(self.valid_actions)
