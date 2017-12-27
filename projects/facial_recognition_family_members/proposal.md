@@ -10,7 +10,7 @@ In the recent years, many consumer grade products have started to deploy face re
 I have been taking photos since my college life. It has been more than 10 years and I have accumulated more than 40k photos. I always wanted to do something to auto preprocess my photos when I import them into my computer. In this project I want to explore how to use machine learning or deep learning to perform facial recognition. More specifically, I want the faces of my family members can be tagged when a photo is imported in.
 
 ### Problem Statement
-Given the photo library I have, to extract/detect the faces first. The cropped/extracted face images will be learnt together with the labels (my family members) and then faces for unseen photos will be auto tagged. This project is not targeted for large or internet scale data.
+Given the photo library I have, to extract/detect the faces first. The cropped/extracted face images will be learnt together with the labels (my family members) and then faces from unseen photos will be auto tagged. This project is not targeted for large or internet scale data.
 
 ### Datasets and Inputs
 Despite I have a large photo library, not all of them are related to this project. For example, photos with no human face, photos with people other than my family members.
