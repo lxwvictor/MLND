@@ -26,12 +26,12 @@ Performing training on images is always good to start with extracting "features"
 
 The dataset will be splitted into training and testing datasets at the third step.
 
-At the fourth step, I'll explore to use KNN alone, PCA with KNN to evalute the performance of accuracy and speed. DNN will also be explored, and basically it's a transfer learning here.
+At the fourth step, I'll explore to use linear classifier, KNN and logistic regression to evalute the performance of accuracy and speed. DNN will also be explored, and basically it's a transfer learning here.
 
 The fifth step is the summary of the performance about the recognition accuracy and speed.
 
 ### Benchmark Model
-At least three different models will be explored, named KNN, PCA + KNN and DNN transfer learning. The baseline of the performance will be based on KNN. Both accuracy and speed will be evaluated in this report.
+At least four different models will be explored, named linear classifier, KNN, logistic regression and DNN transfer learning. The baseline of the performance will be based on the linear model. Both accuracy and speed will be evaluated in this report.
 
 ### Evaluation Metrics
 The metrics will focus on accuracy and speed. Accuracy will be based on the confusion matrix of predicted and real classes. Speed will be evaluted by the system time taken by predication.
@@ -45,6 +45,6 @@ So the entire project will have three main components.
 
 The first one is to extract faces from my photo library and manually pick/group the face photos to prepare the input dateset. There will be seven classes.
 
-And The second component will cover the training and performance of different models including KNN, PCA + KNN and DNN with transfer learning. The performance of KNN will be set as the baseline. PCA + KNN is more likely to outperform on the speed. But I guess DNN with transfer learning should find the best balance of accuracy and speed.
+And The second component will cover the training and performance of different models including linear classifier, KNN, logistic regression and DNN with transfer learning. The performance of linear classifier will be set as the baseline.
 
 The final component will focus on the analysis and comparison of performance from different models.
