@@ -70,13 +70,14 @@ def evaluate(results, accuracy, f1):
     for k, learner in enumerate(results.keys()):
         for j, metric in enumerate(['train_time', 'acc_train', 'f_train', 'pred_time', 'acc_test', 'f_test']):
             for i in np.arange(3):
-                
+                row_id = int(j/3)
+                col_id = j%3
                 # Creative plot code
-                ax[j/3, j%3].bar(i+k*bar_width, results[learner][i][metric], width = bar_width, color = colors[k])
-                ax[j/3, j%3].set_xticks([0.45, 1.45, 2.45])
-                ax[j/3, j%3].set_xticklabels(["1%", "10%", "100%"])
-                ax[j/3, j%3].set_xlabel("Training Set Size")
-                ax[j/3, j%3].set_xlim((-0.1, 3.0))
+                ax[row_id, col_id].bar(i+k*bar_width, results[learner][i][metric], width = bar_width, color = colors[k])
+                ax[row_id, col_id].set_xticks([0.45, 1.45, 2.45])
+                ax[row_id, col_id].set_xticklabels(["1%", "10%", "100%"])
+                ax[row_id, col_id].set_xlabel("Training Set Size")
+                ax[row_id, col_id].set_xlim((-0.1, 3.0))
     
     # Add unique y-labels
     ax[0, 0].set_ylabel("Time (in seconds)")

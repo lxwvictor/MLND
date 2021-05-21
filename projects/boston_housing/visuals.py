@@ -7,6 +7,7 @@ warnings.filterwarnings("ignore", category = UserWarning, module = "matplotlib")
 # Display inline matplotlib plots with IPython
 from IPython import get_ipython
 get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('pylab', 'inline')
 ###########################################
 
 import matplotlib.pyplot as pl
@@ -24,7 +25,7 @@ def ModelLearning(X, y):
     cv = ShuffleSplit(n_splits = 10, test_size = 0.2, random_state = 0)
 
     # Generate the training set sizes increasing by 50
-    train_sizes = np.rint(np.linspace(1, X.shape[0]*0.8 - 1, 9)).astype(int)
+    train_sizes = np.rint(np.linspace(2, X.shape[0]*0.8 - 1, 9)).astype(int)
 
     # Create the figure window
     fig = pl.figure(figsize=(10,10))
@@ -125,7 +126,7 @@ def PredictTrials(X, y, fitter, data):
         prices.append(pred)
         
         # Result
-        print "Trial {}: ${:,.2f}".format(k+1, pred)
+        print("Trial {}: ${:,.2f}".format(k+1, pred))
 
     # Display price range
-    print "\nRange in prices: ${:,.2f}".format(max(prices) - min(prices))
+    print("\nRange in prices: ${:,.2f}".format(max(prices) - min(prices)))
